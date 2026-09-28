@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>青试保｜大学生试错成本保障计划</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft Yahei", sans-serif;
+        }
+        body {
+            background-color: #f5f7fa;
+            color:#333;
+        }
+        nav {
+            background: #006699;
+            padding:16px;
+        }
+        nav h1{
+            color:white;
+            display:inline-block;
+        }
+        nav a{
+            color:white;
+            margin-left:24px;
+            text-decoration:none;
+            font-size:17px;
+        }
+        .container{
+            max-width:1100px;
+            margin:30px auto;
+            padding:0 20px;
+        }
+        .card{
+            background:#fff;
+            padding:28px;
+            border-radius:10px;
+            box-shadow:0 2px 12px #00000015;
+            margin-bottom:24px;
+        }
+        h2{
+            color:#006699;
+            margin-bottom:18px;
+        }
+        .price-table{
+            width:100%;
+            border-collapse: collapse;
+            margin:16px 0;
+        }
+        .price-table td,.price-table th{
+            border:1px solid #ddd;
+            padding:12px;
+            text-align:center;
+        }
+        .price-table th{
+            background:#e8f4f9;
+        }
+        label{
+            display:block;
+            margin:14px 0 6px;
+        }
+        input,select,textarea{
+            width:100%;
+            padding:10px;
+            border:1px solid #ccc;
+            border-radius:6px;
+            font-size:16px;
+        }
+        button{
+            margin-top:20px;
+            background:#006699;
+            color:white;
+            border:none;
+            padding:12px 30px;
+            border-radius:6px;
+            font-size:17px;
+            cursor:pointer;
+        }
+        button:hover{
+            background:#005077;
+        }
+        .tip{
+            color:#666;
+            font-size:14px;
+            margin:6px 0;
+        }
+        .hide{
+            display:none;
+        }
+        .case-item{
+            background:#f0f7fb;
+            padding:16px;
+            border-left:4px solid #006699;
+            margin:12px 0;
+        }
+    </style>
+</head>
+<body>
+<!--导航栏-->
+<nav>
+    <h1>青试保</h1>
+    <a href="#home">产品介绍</a>
+    <a href="#buy">在线投保</a>
+    <a href="#claim">理赔申请</a>
+    <a href="#example">赔付案例</a>
+</nav>
+
+<div class="container">
+    <!-- 首页介绍 -->
+    <div id="home" class="card">
+        <h2>青试保 · 大学生试错成本保障计划</h2>
+        <p>专为在校大学生、毕业1年内应届生设计，保障<strong>创业失败沉没成本、求职面试失败损失</strong>，让创业不怕输、求职不怕试。</p>
+        <br>
+        <h3>保费方案（按月缴费）</h3>
+        <table class="price-table">
+            <thead>
+                <tr>
+                    <th>保障项目</th>
+                    <th>每月保费</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>主险·创业</td><td>20元</td></tr>
+                <tr><td>主险·求职</td><td>15元</td></tr>
+                <tr><td>主险·双项（创业+求职）</td><td>30元</td></tr>
+                <tr><td>模块一·创业深度补偿（附加）</td><td>+10元</td></tr>
+                <tr><td>模块二·求职累积补偿（附加）</td><td>+8元</td></tr>
+            </tbody>
+        </table>
+        <p class="tip">投保7天后生效，防止先失败后投保；需要学信网身份校验。</p>
+    </div>
+
+    <!--投保表单-->
+    <div id="buy" class="card">
+        <h2>📝 在线投保</h2>
+        <form id="buyForm">
+            <label>姓名</label>
+            <input type="text" id="username" placeholder="请输入真实姓名">
+
+            <label>学信网学号</label>
+            <input type="text" id="stuId" placeholder="学生身份校验">
+
+            <label>身份类型</label>
+            <select id="userType">
+                <option value="college">在校大学生</option>
+                <option value="grad">毕业1年内应届生</option>
+            </select>
+
+            <label>选择主险</label>
+            <select id="mainInsure">
+                <option value="cy">主险·创业（20元/月）</option>
+                <option value="qz">主险·求职（15元/月）</option>
+                <option value="both">主险·双项（30元/月）</option>
+            </select>
+
+            <label>附加模块（可选）</label>
+            <div>
+                <input type="checkbox" id="mod1">
+                <label for="mod1" style="display:inline">模块一：创业深度补偿 +10元/月</label>
+            </div>
+            <div>
+                <input type="checkbox" id="mod2">
+                <label for="mod2" style="display:inline">模块二：求职累积补偿 +8元/月</label>
+            </div>
+
+            <label>投保月数</label>
+            <input type="number" id="monthNum" value="1" min="1">
+
+            <div id="cyProofWrap" class="hide">
+                <label>创业入驻证明（众创空间/创业学院）</label>
+                <input type="text" placeholder="填写证明编号，真实系统上传图片">
+            </div>
+
+            <p>预估每月保费：<span id="priceShow">0</span> 元</p>
+            <button type="submit">提交投保申请（模拟）</button>
+            <p id="buyMsg" class="tip"></p>
+        </form>
+    </div>
+
+    <!--理赔申请-->
+    <div id="claim" class="card">
+        <h2>🛎️ 理赔申请</h2>
+        <form id="claimForm">
+            <label>投保单号</label>
+            <input type="text" id="orderNo" placeholder="你的投保单号">
+
+            <label>理赔类型</label>
+            <select id="claimType">
+                <option value="cy_fail">创业项目失败</option>
+                <option value="qz_fail">求职面试失败</option>
+            </select>
+
+            <label>事件简述</label>
+            <textarea id="claimDesc" rows="4" placeholder="描述你的创业失败/面试失败情况"></textarea>
+
+            <label>损失金额（元）</label>
+            <input type="number" id="lossMoney" placeholder="实际投入损失">
+
+            <label>佐证材料信息</label>
+            <input type="text" placeholder="创业票据、面试邀请函编号等（真实项目上传文件）">
+
+            <label>赔付方式</label>
+            <select id="payWay">
+                <option value="cash">仅现金补偿</option>
+                <option value="service">仅服务包</option>
+                <option value="both">现金+增值服务包</option>
+            </select>
+
+            <button type="submit">提交理赔（模拟）</button>
+            <p id="claimMsg" class="tip"></p>
+        </form>
+    </div>
+
+    <!--赔付示例-->
+    <div id="example" class="card">
+        <h2>📋 赔付案例参考</h2>
+        <div class="case-item">
+            <h4>案例A｜校园文创创业失败</h4>
+            <p>项目运行8个月失败；材料费2000，工位费1600；投保创业+模块一。</p>
+            <p>赔付：材料费1200 +工位800 +生活过渡金2000，合计<strong>4000元</strong></p>
+        </div>
+        <div class="case-item">
+            <h4>案例B｜多次面试全部落选</h4>
+            <p>2次市内初面、1次跨城终面全部失败；投保求职+模块二。</p>
+            <p>赔付：交通费260 +时间补偿140 +连续失败鼓励金200，合计<strong>600元</strong></p>
+        </div>
+    </div>
+</div>
+
+<script>
+// =========保费计算=========
+const mainInsureDom = document.getElementById("mainInsure");
+const mod1Dom = document.getElementById("mod1");
+const mod2Dom = document.getElementById("mod2");
+const cyProofWrap = document.getElementById("cyProofWrap");
+const priceShow = document.getElementById("priceShow");
+
+function calcPrice(){
+    let price = 0;
+    //主险
+    if(mainInsureDom.value === "cy") price +=20;
+    if(mainInsureDom.value === "qz") price +=15;
+    if(mainInsureDom.value === "both") price +=30;
+    //附加模块
+    if(mod1Dom.checked) price +=10;
+    if(mod2Dom.checked) price +=8;
+
+    //切换是否展示创业证明输入框
+    if(mainInsureDom.value === "cy" || mainInsureDom.value === "both"){
+        cyProofWrap.classList.remove("hide");
+    }else{
+        cyProofWrap.classList.add("hide");
+    }
+    priceShow.innerText = price;
+}
+mainInsureDom.addEventListener("change",calcPrice);
+mod1Dom.addEventListener("change",calcPrice);
+mod2Dom.addEventListener("change",calcPrice);
+calcPrice();
+
+// =========投保表单模拟提交========
+document.getElementById("buyForm").addEventListener("submit",function(e){
+    e.preventDefault();
+    const msgDom = document.getElementById("buyMsg");
+    msgDom.innerText = "✅ 投保申请提交成功！模拟投保单号：TS"+Math.floor(Math.random()*1000000) +"，7天后保单生效。（演示网页，不会真实付费）";
+})
+
+// =========理赔表单模拟提交========
+document.getElementById("claimForm").addEventListener("submit",function(e){
+    e.preventDefault();
+    const msgDom = document.getElementById("claimMsg");
+    msgDom.innerText = "✅ 理赔申请已受理！我们将核验材料；小额案件支持秒赔。（演示网页，不会真实打款）";
+})
+</script>
+</body>
+</html>
